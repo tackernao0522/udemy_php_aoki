@@ -144,10 +144,10 @@ if (!empty($_POST['btn_submit'])) {
                                           } ?>">
       <br>
       性別
-      <input type="radio" name="gender" value="0" <?php if (!empty($_POST['gender']) && $_POST['gender'] === '0') {
+      <input type="radio" name="gender" value="0" <?php if ($_POST['gender'] === '0') {
                                                     echo 'checked';
                                                   } ?>>男性
-      <input type="radio" name="gender" value="1" <?php if (!empty($_POST['gender']) && $_POST['gender'] === '1') {
+      <input type="radio" name="gender" value="1" <?php if ($_POST['gender'] === '1') {
                                                     echo 'checked';
                                                   } ?>>女性
       <br>
@@ -175,11 +175,9 @@ if (!empty($_POST['btn_submit'])) {
       </select>
       <br>
       お問い合わせ内容
-      <textarea name="contact">
-      <?php if (!empty($_POST['contact'])) {
-        echo h($_POST['contact']);
-      } ?>
-      </textarea>
+      <textarea name="contact"><?php if (!empty($_POST['contact'])) {
+                                  echo h($_POST['contact']);
+                                } ?></textarea>
       <br>
       <input type="checkbox" name="caution" value="1">注意事項のチェックする
       <br>
