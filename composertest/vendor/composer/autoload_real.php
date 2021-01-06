@@ -22,6 +22,8 @@ class ComposerAutoloaderInitf070287d7d3d3890a5186964cfc16623
             return self::$loader;
         }
 
+        require __DIR__ . '/platform_check.php';
+
         spl_autoload_register(array('ComposerAutoloaderInitf070287d7d3d3890a5186964cfc16623', 'loadClassLoader'), true, true);
         self::$loader = $loader = new \Composer\Autoload\ClassLoader();
         spl_autoload_unregister(array('ComposerAutoloaderInitf070287d7d3d3890a5186964cfc16623', 'loadClassLoader'));
@@ -50,6 +52,24 @@ class ComposerAutoloaderInitf070287d7d3d3890a5186964cfc16623
 
         $loader->register(true);
 
+        if ($useStaticLoader) {
+            $includeFiles = Composer\Autoload\ComposerStaticInitf070287d7d3d3890a5186964cfc16623::$files;
+        } else {
+            $includeFiles = require __DIR__ . '/autoload_files.php';
+        }
+        foreach ($includeFiles as $fileIdentifier => $file) {
+            composerRequiref070287d7d3d3890a5186964cfc16623($fileIdentifier, $file);
+        }
+
         return $loader;
+    }
+}
+
+function composerRequiref070287d7d3d3890a5186964cfc16623($fileIdentifier, $file)
+{
+    if (empty($GLOBALS['__composer_autoload_files'][$fileIdentifier])) {
+        require $file;
+
+        $GLOBALS['__composer_autoload_files'][$fileIdentifier] = true;
     }
 }

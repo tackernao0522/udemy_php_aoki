@@ -6,3 +6,8 @@ use App\Controllers\TestController;
 
 $app = new TestController;
 $app->run();
+echo '<br>';
+
+use Carbon\Carbon;
+
+echo Carbon::now()->format('今日はY年m月d日だよ！');
